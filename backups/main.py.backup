@@ -1,0 +1,18 @@
+import numpy as np
+from oscillator import Oscillator
+from generator import ADSRGenerator
+
+def main():
+    lfo1 = Oscillator(freq=5, amp=.5, phase=0, time=10, wave_type="square")
+    lfo2 = Oscillator(freq=1/4*lfo1.wave_form, amp=.2, phase=np.pi/6, time=10, wave_type="sine")
+    osc = Oscillator(freq=239, amp=lfo2.wave_form, phase=0, time=10)
+    
+    #ADSRGenerator(osc, [.1,.3,.2,.4])
+
+    osc.write_wav("./crazy_wave.wav")
+    osc.plot_signal()
+
+
+
+if __name__ == "__main__":
+    main()
